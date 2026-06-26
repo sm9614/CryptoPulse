@@ -1,0 +1,10 @@
+### Create a new alert
+POST http://localhost:8080/alerts
+Content-Type: application/json
+
+{
+  "email": "test@email.com",
+  "coin": "BTC",
+  "targetPrice": 65000,
+  "condition": "RISES_ABOVE"
+}

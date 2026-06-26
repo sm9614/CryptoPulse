@@ -8,7 +8,7 @@ public class AlertMapper {
     public static Alert toEntity(AlertRequestDTO alertRequestDTO) {
         Alert alert = new Alert();
         alert.setEmail(alertRequestDTO.getEmail());
-        alert.setCoin(alert.getCoin());
+        alert.setCoin(alertRequestDTO.getCoin());
         alert.setTargetPrice(alertRequestDTO.getTargetPrice());
         alert.setCondition(alertRequestDTO.getCondition());
         alert.setStatus("PENDING"); // Default status when creating a new alert

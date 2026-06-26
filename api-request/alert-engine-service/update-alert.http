@@ -1,0 +1,11 @@
+### Update alert
+PUT http://localhost:8080/alerts/f4dd1570-8321-43f3-8b28-2a761f7be7f8
+content-Type: application/json
+
+{
+  "email": "testupdate@email.com",
+  "coin": "BTC",
+  "targetPrice": 50000,
+  "condition": "DROPS_BELOW",
+  "status": "PENDING"
+}

@@ -1,9 +1,6 @@
 package com.pm.alertengineservice.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class AlertRequestDTO {
 
@@ -15,7 +12,7 @@ public class AlertRequestDTO {
     @Size(min = 2, max = 10, message = "Coin should be between 2 and 10 characters")
     private String coin;
 
-    @NotBlank(message = "Target price is required")
+    @NotNull(message = "Target price is required")
     @Positive(message = "Target price must be a positive number")
     private double targetPrice;
 

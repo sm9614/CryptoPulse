@@ -1,0 +1,2 @@
+### delete-alert
+DELETE http://localhost:8080/alerts/f4dd1570-8321-43f3-8b28-2a761f7be7f8
