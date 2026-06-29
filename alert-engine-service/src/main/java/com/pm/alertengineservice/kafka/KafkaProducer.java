@@ -1,4 +1,4 @@
-package com.pm.priceingestionservice.kafka;
+package com.pm.alertengineservice.kafka;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +14,12 @@ public class KafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendEvent(String priceData) {
+    public void sendEvent(String emailAlert) {
         try {
-            kafkaTemplate.send("crypto-prices", priceData);
-            log.info("Sent event to Kafka: {}", priceData);
+            kafkaTemplate.send("email-alerts", emailAlert);
+            log.info("Sent event to Kafka: {}", emailAlert);
         } catch (Exception e) {
-            log.error("Failed to send event to Kafka: {}", priceData, e);
+            log.error("Failed to send event to Kafka: {}", emailAlert, e);
         }
     }
 }
