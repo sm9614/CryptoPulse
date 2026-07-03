@@ -7,6 +7,8 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
+import java.text.NumberFormat;
+
 @Component
 public class KafkaConsumer {
     private final static Logger log = LoggerFactory.getLogger(KafkaConsumer.class);
@@ -29,7 +31,7 @@ public class KafkaConsumer {
                     "The cryptocurrency " + emailAlert.getSymbol() + " has " +
                     (emailAlert.getCondition().equals("RISES_ABOVE") ? "risen above" : "dropped below") +
                     " your target price of $" + emailAlert.getTargetPrice() + ".\n" +
-                    "Current price: $" + emailAlert.getCurrentPrice() + "\n\n" +
+                    "Current price: $" + NumberFormat.getCurrencyInstance().format(emailAlert.getCurrentPrice()) + "\n\n" +
                     "Best regards,\n" +
                     "CryptoPulse Service";
 

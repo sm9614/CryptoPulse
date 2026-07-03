@@ -56,7 +56,8 @@ public class KafkaConsumer {
             emailAlert.setCurrentPrice(price);
             kafkaProducer.sendEvent(objectMapper.writeValueAsString(emailAlert));
             alert.setStatus("COMPLETED");
-            log.info("Alert triggered for {} at ${}", symbol, NumberFormat.getCurrencyInstance().format(price));
+            alertRepository.save(alert);
+            log.info("Alert triggered for and marked COMPLETED {} at ${}", symbol, NumberFormat.getCurrencyInstance().format(price));
 
         } catch (Exception e) {
             log.error("Failed to create email alert event for alert: {}", alert, e);

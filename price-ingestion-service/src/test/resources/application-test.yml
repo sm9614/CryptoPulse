@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: price-ingestion-service-test
+
+  kafka:
+    bootstrap-servers: test:1234
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+server:
+  port: 0
