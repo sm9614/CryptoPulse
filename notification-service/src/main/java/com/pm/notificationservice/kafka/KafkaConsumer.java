@@ -31,7 +31,7 @@ public class KafkaConsumer {
                     "The cryptocurrency " + emailAlert.getSymbol() + " has " +
                     (emailAlert.getCondition().equals("RISES_ABOVE") ? "risen above" : "dropped below") +
                     " your target price of $" + emailAlert.getTargetPrice() + ".\n" +
-                    "Current price: $" + NumberFormat.getCurrencyInstance().format(emailAlert.getCurrentPrice()) + "\n\n" +
+                    "Current price: " + NumberFormat.getCurrencyInstance().format(emailAlert.getCurrentPrice()) + "\n\n" +
                     "Best regards,\n" +
                     "CryptoPulse Service";
 

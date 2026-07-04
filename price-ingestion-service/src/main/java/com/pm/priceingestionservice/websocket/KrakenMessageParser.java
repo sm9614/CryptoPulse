@@ -15,8 +15,9 @@ public class KrakenMessageParser {
         this.objectMapper = objectMapper;
     }
 
-    private String normalizeSymbol(String krakenSymbol) {
-        return krakenSymbol.replace("XBT", "BTC");
+    private String normalizeSymbol(String krakenPair) {
+        String base = krakenPair.split("/")[0];
+        return SupportedCoin.fromKrakenBase(base).name();
     }
 
     public Optional<PriceEvent> parse(String payload) {

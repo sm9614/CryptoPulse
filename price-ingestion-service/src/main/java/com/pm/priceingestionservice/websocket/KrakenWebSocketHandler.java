@@ -11,7 +11,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class KrakenWebSocketHandler extends TextWebSocketHandler {
@@ -32,6 +32,7 @@ public class KrakenWebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String jsonPayload = message.getPayload();
+        log.info("Raw Kraken message: {}", jsonPayload);   // TEMPORARY - remove after debugging
         Optional<PriceEvent> priceEvent = messageParser.parse(jsonPayload);
             priceEvent.ifPresent(event -> {
                 try {
@@ -45,14 +46,16 @@ public class KrakenWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         log.info("WebSocket connection established with Kraken: {}", session.getId());
-        String subscribeMessage = """
-        {
-            "event": "subscribe",
-            "pair": ["XBT/USD"],
-            "subscription": {"name": "trade"}
-        }
-        """;
+        List<String> pairs = Arrays.stream(SupportedCoin.values())
+                .map(SupportedCoin::getKrakenPair)
+                .toList();
 
+        Map<String, Object> subscribeRequest = new LinkedHashMap<>();
+        subscribeRequest.put("event", "subscribe");
+        subscribeRequest.put("pair", pairs);
+        subscribeRequest.put("subscription", Map.of("name", "trade"));
+
+        String subscribeMessage = objectMapper.writeValueAsString(subscribeRequest);
         session.sendMessage(new TextMessage(subscribeMessage));
 
     }
