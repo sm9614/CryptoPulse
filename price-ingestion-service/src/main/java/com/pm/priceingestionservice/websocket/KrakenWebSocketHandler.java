@@ -32,7 +32,6 @@ public class KrakenWebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String jsonPayload = message.getPayload();
-        log.info("Raw Kraken message: {}", jsonPayload);   // TEMPORARY - remove after debugging
         Optional<PriceEvent> priceEvent = messageParser.parse(jsonPayload);
             priceEvent.ifPresent(event -> {
                 try {
