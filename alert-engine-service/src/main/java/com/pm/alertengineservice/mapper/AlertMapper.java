@@ -11,7 +11,7 @@ public class AlertMapper {
         alert.setCoin(alertRequestDTO.getCoin().toUpperCase());
         alert.setTargetPrice(alertRequestDTO.getTargetPrice());
         alert.setCondition(alertRequestDTO.getCondition());
-        alert.setStatus("PENDING"); // Default status when creating a new alert
+        alert.setStatus("ACTIVE"); // Default status when creating a new alert
 
         return alert;
     }

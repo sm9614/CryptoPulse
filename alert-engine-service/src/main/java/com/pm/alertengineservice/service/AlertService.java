@@ -34,8 +34,9 @@ public class AlertService {
 
     public AlertResponseDTO updateAlert(UUID id, AlertRequestDTO alertRequestDTO) {
 
-        validateCoin(alertRequestDTO.getCoin());
         Alert alert = alertRepository.findById(id).orElseThrow(() -> new AlertNotFoundException("Alert not found with id: " + id));
+
+        validateCoin(alertRequestDTO.getCoin());
         alert.setEmail(alertRequestDTO.getEmail());
         alert.setCoin(alertRequestDTO.getCoin());
         alert.setTargetPrice(alertRequestDTO.getTargetPrice());

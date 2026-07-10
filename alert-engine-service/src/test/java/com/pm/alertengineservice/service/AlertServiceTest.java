@@ -38,7 +38,7 @@ public class AlertServiceTest {
         alert.setCoin("BTC");
         alert.setTargetPrice(50000.00);
         alert.setCondition("DROPS_BELOW");
-        alert.setStatus("PENDING");
+        alert.setStatus("ACTIVE");
 
         when(alertRepository.findAll()).thenReturn(List.of(alert));
 
@@ -65,7 +65,7 @@ public class AlertServiceTest {
         alert.setCoin("BTC");
         alert.setTargetPrice(50000.00);
         alert.setCondition("DROPS_BELOW");
-        alert.setStatus("PENDING");
+        alert.setStatus("ACTIVE");
 
         when(alertRepository.save(any(Alert.class))).thenReturn(alert);
 
@@ -75,7 +75,7 @@ public class AlertServiceTest {
         assertEquals("BTC", response.getCoin());
         assertEquals(50000.00, response.getTargetPrice());
         assertEquals("DROPS_BELOW", response.getCondition());
-        assertEquals("PENDING", response.getStatus());
+        assertEquals("ACTIVE", response.getStatus());
         assertEquals("Test@email.com", response.getEmail());
 
         verify(alertRepository).save(any(Alert.class));
@@ -90,7 +90,7 @@ public class AlertServiceTest {
         alert.setCoin("BTC");
         alert.setTargetPrice(50000.00);
         alert.setCondition("DROPS_BELOW");
-        alert.setStatus("PENDING");
+        alert.setStatus("ACTIVE");
 
         AlertRequestDTO request = new AlertRequestDTO();
         request.setEmail("new@email.com");

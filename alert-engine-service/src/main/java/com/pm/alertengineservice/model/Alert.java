@@ -15,7 +15,7 @@ public class Alert {
     private String coin;
     private Double targetPrice;
     private String condition; // "DROPS_BELOW" or "RISES_ABOVE"
-    private String status;  //"PENDING" or "ACTIVE" or "COMPLETED"
+    private String status;  //"ACTIVE" or "COMPLETED"
 
     public UUID getId() {
         return id;
